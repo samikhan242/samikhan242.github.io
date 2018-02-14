@@ -3,7 +3,6 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   document.addEventListener("contextmenu", event => event.preventDefault())
 }
-
 function draw() {
   noStroke()
   if (mouseIsPressed) {
@@ -20,7 +19,7 @@ function draw() {
    }
 
  if (mouseButton === CENTER) {
-    fill(random(225), random(225), random(225), random(225));
+    fill((random(225)), (random(225)), (random(225)), (random(225)));
     triangle(mouseX-50, mouseY+50, mouseX, mouseY, mouseX+50, mouseY+50);
  }
    print(mouseButton);
@@ -28,7 +27,7 @@ function draw() {
 
   if (keyIsPressed) {
     if (keyCode === ENTER){
-      background(random(0, 225));
+      background(random(225));
     }
 
   }
