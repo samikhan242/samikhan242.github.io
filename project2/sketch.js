@@ -1,6 +1,7 @@
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  document.addEventListener("contextmenu", event => event.preventDefault())
 }
 
 function draw() {
@@ -29,7 +30,7 @@ function draw() {
     if (keyCode === ENTER){
       background(random(0, 225));
     }
-  
+
   }
 
 }
