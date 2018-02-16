@@ -1,8 +1,23 @@
 
+// Mouse Right click is to draw rect.
+//Mouse Left click is to draw ellipse or cricle.
+// Mouse Center or wheel click is to draw triangle..
+// Press Enter key to pick random background..
+// press Shift key to reset the background to white.
+
+
 function setup() {
+  // create canvas aka create window...
   createCanvas(windowWidth, windowHeight);
-  document.addEventListener("contextmenu", event => event.preventDefault())
+  // to remove contextmenu ..
+  document.addEventListener("contextmenu", event => event.preventDefault());
+
+
+
+
+
 }
+
 function draw() {
   // to remove borders;
   noStroke()
@@ -29,10 +44,19 @@ function draw() {
  }
 // Key Pressed;
   if (keyIsPressed) {
+    let value = 225;
+    let valueRandom;
+    let valueIs = valueRandom;
+    // background color Random...
     if (keyCode === ENTER){
-      background(random(225));
-    }
-
+      valueRandom = background(random(value));
   }
-
+  // background white..
+  if (keyCode === SHIFT){
+    clear();
+  }
+  if (keyCode === CTRL ){
+    text("word",mouseX,mousey);
+  }
+ }
 }
