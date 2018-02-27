@@ -44,9 +44,10 @@ function draw() {
  }
 // Key Pressed;
   if (keyIsPressed) {
+    // defined (no loop!!)
     let value = 225;
     let valueRandom;
-    let valueIs = valueRandom;
+
     // background color Random...
     if (keyCode === ENTER){
       valueRandom = background(random(value));
@@ -54,9 +55,6 @@ function draw() {
   // background white..
   if (keyCode === SHIFT){
     clear();
-  }
-  if (keyCode === CTRL ){
-    text("word",mouseX,mousey);
   }
  }
 }
