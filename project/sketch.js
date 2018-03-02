@@ -1,34 +1,62 @@
-// p5js template project - replace with project title
-// Dan Schellenberg - replace with your name
-// Feb 2, 2018 - replace with the date
 
-// global variables
-let gear;
+// Mouse Right click is to draw rect.
+//Mouse Left click is to draw ellipse or cricle.
+// Mouse Center or wheel click is to draw triangle..
+// Press Enter key to pick random background..
+// press Shift key to reset the background to white.
 
-// the preload function guarentees that the code inside the function is
-// executed before the rest of the program runs -- helpful for things
-// like loading images (since JS is asynchronous)
-function preload() {
-  gear = loadImage("images/gear.png");
-}
 
-// the setup function will only run once (before the draw loop begins)
-// this is where you want to set up the environment (size of canvas, etc)
 function setup() {
+  // create canvas aka create window...
   createCanvas(windowWidth, windowHeight);
+  // to remove contextmenu ..
+  document.addEventListener("contextmenu", event => event.preventDefault());
+
+
+
+
+
 }
 
 function draw() {
-  background(255);
-
-  image(gear, 0, 0);
-
-  stroke(0);
-  line(0, 0, 200, 200);
-
-  fill(0, 255, 0, 100);
-  noStroke();
-
-  rect(mouseX, mouseY, 100, 300);
-  ellipse(400, 150, 300, 200);
+  // to remove borders;
+  noStroke()
+  // mouse Pressed;
+  if (mouseIsPressed) {
+    // Left Click for Circle;
+   if (mouseButton === LEFT) {
+    fill(random(225), random(225), random(225), random(225));
+    ellipseMode(CENTER);
+    ellipse(mouseX, mouseY, 50, 50);
+  }
+// Right Click for rect;
+  if (mouseButton === RIGHT) {
+   fill(random(225), random(225), random(225), random(225));
+   rectMode(CENTER);
+   rect(mouseX, mouseY, 50, 50);
+   }
+// Center or wheel click for triangle;
+ if (mouseButton === CENTER) {
+    fill((random(225)), (random(225)), (random(225)), (random(225)));
+    triangle(mouseX-50, mouseY+50, mouseX, mouseY, mouseX+50, mouseY+50);
+ }
+   print(mouseButton);
+ }
+// Key Pressed;
+  if (keyIsPressed) {
+    let value = 225;
+    let valueRandom;
+    let valueIs = valueRandom;
+    // background color Random...
+    if (keyCode === ENTER){
+      valueRandom = background(random(value));
+  }
+  // background white..
+  if (keyCode === SHIFT){
+    clear();
+  }
+  if (keyCode === CTRL ){
+    text("word",mouseX,mousey);
+  }
+ }
 }
