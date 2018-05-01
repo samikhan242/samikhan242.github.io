@@ -2,13 +2,15 @@
 
 let tiles;
 let levelBackground;
-let platform, coin, box, fly, p1, Red, empty;
+let platform, coin, box, fly, p1, Red, empty, Blue, Orange, Pink;
 let tilesHigh, tilesWide;
 let tileWidth, tileHeight;
 let levelToLoad;
 let lines;
 let playerX = 9;
 let playerY = 16;
+let RedX = 9;
+let RedY = 8;
 
 function preload() {
   //load level data
@@ -22,7 +24,7 @@ function preload() {
   platform = loadImage("images/Walls.png");
   coin = loadImage("images/food.png");
   box = loadImage("images/boxItem.png");
-    p1 = loadImage("images/p1_front.png");
+  p1 = loadImage("images/p1_front.png");
   Red = loadImage("images/Red.png");
   Blue = loadImage("images/Blue.png");
   Orange = loadImage("images/Orange.png");
@@ -53,7 +55,21 @@ function setup() {
 
 function draw() {
   display();
+  CheckGhost();
+  gameOver();
+
 }
+
+function gameOver(){
+  background
+}
+
+function CheckGhost(){
+  if (tiles[RedX][RedY] === "M") {
+
+  }
+}
+
 
 function display() {
   image(levelBackground, 0, 0, width, height);
@@ -67,11 +83,34 @@ function display() {
 
 function keyPressed() {
   if (keyCode === LEFT_ARROW) {
-    tiles[playerX= playerX -1][playerY] = tiles[9][16];
-    tiles[playerX][playerY] = tiles[0][12];
+    // tiles[playerX= playerX -1][playerY] = tiles[9][16];
     // tiles[playerX][playerY] = tiles[0][12];
+    if (tiles[playerX-1][playerY]!== "#") {
+      tiles[playerX][playerY] = ".";
+      tiles[playerX-=1][playerY] = "M";
+    }
+
+  }
+  if (keyCode === RIGHT_ARROW) {
+    if (tiles[playerX+1][playerY]!== "#") {
+      tiles[playerX][playerY] = ".";
+      tiles[playerX+=1][playerY] = "M";
+    }
+  }
+  if (keyCode === UP_ARROW) {
+    if (tiles[playerX][playerY-1]!== "#") {
+      tiles[playerX][playerY] = ".";
+      tiles[playerX][playerY-= 1] = "M";
+    }
+  }
+  if (keyCode === DOWN_ARROW) {
+    if (tiles[playerX][playerY+1]!== "#") {
+      tiles[playerX][playerY] = ".";
+      tiles[playerX][playerY+= 1] = "M";
+    }
   }
 }
+
 
 function showTile(location, x, y) {
   if (location === "#") {
