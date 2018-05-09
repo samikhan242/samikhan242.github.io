@@ -1,3 +1,7 @@
+// Akashdeep worked on checkGhost
+// Sami worked on keyPressed
+// everthing else was done by working together
+// To play this game you have to use arrow key's.
 
 
 let tiles;
@@ -11,7 +15,12 @@ let playerX = 9;
 let playerY = 16;
 let RedX = 9;
 let RedY = 8;
-
+let BlueX = 4;
+let BlueY = 1;
+let OrangeX = 14;
+let OrangeY = 1;
+let PinkX = 1;
+let PinkY = 20;
 function preload() {
   //load level data
   levelToLoad = "assets/levels/0.txt";
@@ -55,21 +64,8 @@ function setup() {
 
 function draw() {
   display();
-  CheckGhost();
-  gameOver();
-
+  gameTime();
 }
-
-function gameOver(){
-  background
-}
-
-function CheckGhost(){
-  if (tiles[RedX][RedY] === "M") {
-
-  }
-}
-
 
 function display() {
   image(levelBackground, 0, 0, width, height);
@@ -110,6 +106,64 @@ function keyPressed() {
     }
   }
 }
+function gameTime(){
+  let timer = 200;
+  textSize(30);
+  textAlign(CENTER, CENTER);
+  if (frameCount % 10 === 0 && timer >= 0) {
+    timer --;
+    checkGhost();
+
+  }
+  checkColli();
+  if (timer === 0) {
+    textSize(30);
+  }
+}
+
+function checkColli(){
+  if (tiles[playerX][playerY] !== "M" ) {
+    background(255);
+    textSize(30);
+    text("GameOver", width/2, 100);
+  }
+}
+
+function checkGhost(){
+  if (tiles[RedX+1][RedY]!== "#") {
+    tiles[RedX][RedY] = ".";
+    tiles[RedX+=1][RedY] = "R";
+  }
+  else if (tiles[RedX-1][RedY]!== "#") {
+    tiles[RedX][RedY] = ".";
+    tiles[RedX-=6][RedY] = "R";
+  }
+  if (tiles[BlueX][BlueY+1]!== "#") {
+    tiles[BlueX][BlueY] = ".";
+    tiles[BlueX][BlueY+=1] = "B";
+  }
+  else if (tiles[BlueX][BlueY-1]!== "#") {
+    tiles[BlueX][BlueY] = ".";
+    tiles[BlueX][BlueY-=17] = "B";
+  }
+  if (tiles[OrangeX][OrangeY+1]!== "#") {
+    tiles[OrangeX][OrangeY] = ".";
+    tiles[OrangeX][OrangeY+=1] = "O";
+  }
+  else if (tiles[OrangeX+1][OrangeY]!== "#") {
+    tiles[OrangeX][OrangeY] = ".";
+    tiles[OrangeX][OrangeY-=17] = "O";
+  }
+  if (tiles[PinkX+1][PinkY]!== "#") {
+    tiles[PinkX][PinkY] = ".";
+    tiles[PinkX+=1][PinkY] = "P";
+  }
+  else if (tiles[PinkX+1][PinkY]=== "#") {
+    tiles[PinkX][PinkY] = ".";
+    tiles[PinkX-=15][PinkY] = "P";
+  }
+}
+
 
 
 function showTile(location, x, y) {
